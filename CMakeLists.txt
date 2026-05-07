@@ -1,16 +1,13 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(LiarTavern VERSION 0.1 LANGUAGES CXX)
+project(liarliar LANGUAGES CXX)
 
-set(CMAKE_AUTOUIC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(Qt6 COMPONENTS Core Gui Widgets REQUIRED)
 
 set(PROJECT_SOURCES
     main.cpp
@@ -18,23 +15,6 @@ set(PROJECT_SOURCES
     mainwindow.h
 )
 
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(LiarTavern
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
-    )
-else()
-    add_executable(LiarTavern
-        ${PROJECT_SOURCES}
-    )
-endif()
+add_executable(liarliar ${PROJECT_SOURCES})
 
-target_link_libraries(LiarTavern PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-
-set_target_properties(LiarTavern PROPERTIES
-    WIN32_EXECUTABLE TRUE
-)
-
-if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(LiarTavern)
-endif()
+target_link_libraries(liarliar PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets)
