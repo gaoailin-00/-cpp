@@ -1,8 +1,5 @@
 #include "mainwindow.h"
-
-// ==========================
-// 创建 introScene（开场大图）
-// ==========================
+// 创建开场场景图
 void MainWindow::createIntroScene() {
     introScene = new QWidget();
     introScene->setStyleSheet("background:#0a0a0a;");
@@ -57,9 +54,8 @@ void MainWindow::createIntroScene() {
     });
 }
 
-// ==========================
+
 // 创建 startScene（标题界面）
-// ==========================
 void MainWindow::createStartScene() {
     startScene = new QWidget();
     startScene->setStyleSheet(
@@ -136,9 +132,8 @@ void MainWindow::createStartScene() {
     });
 }
 
-// ==========================
 // 创建 historyScene（剧情过场）
-// ==========================
+
 void MainWindow::createHistoryScene() {
     historyScene = new QWidget();
     historyScene->setStyleSheet("background:#000000;");
@@ -194,9 +189,8 @@ void MainWindow::createHistoryScene() {
     });
 }
 
-// ==========================
 // 创建 ruleScene（规则说明）
-// ==========================
+
 void MainWindow::createRuleScene() {
     ruleScene = new QWidget();
     ruleScene->setStyleSheet("background:#000000;");
@@ -252,9 +246,9 @@ void MainWindow::createRuleScene() {
     });
 }
 
-// ==========================
+
 // 创建 tavernScene（酒馆大厅）
-// ==========================
+
 void MainWindow::createTavernScene() {
     tavernScene = new QWidget();
     tavernScene->setStyleSheet("background:#000000;");
@@ -281,7 +275,7 @@ void MainWindow::createTavernScene() {
     overlayLayout->setContentsMargins(28, 22, 28, 22);
     overlayLayout->setSpacing(16);
 
-    // ===== 顶部信息区 =====
+   
     QHBoxLayout* topLayout = new QHBoxLayout();
 
     QVBoxLayout* topLeftLayout = new QVBoxLayout();
@@ -366,7 +360,7 @@ void MainWindow::createTavernScene() {
     overlayLayout->addLayout(middleLayout);
     overlayLayout->addSpacing(14);
 
-    // ===== 右下角退出按钮 =====
+    //右下角退出按钮
     QHBoxLayout* bottomLayout = new QHBoxLayout();
     bottomLayout->addStretch();
 
@@ -396,9 +390,8 @@ void MainWindow::createTavernScene() {
 
     updateTavernInfo();
 }
-// ==========================
-// 创建 battleScene（战斗界面）
-// ==========================
+// 创建对弈牌桌界面
+
 void MainWindow::createBattleScene() {
     battleScene = new QWidget();
     battleScene->setStyleSheet("background:#1c120d;");
@@ -417,7 +410,7 @@ void MainWindow::createBattleScene() {
         );
     mainLayout->addWidget(battleTitleLabel);
 
-    // ===== NPC 区域 =====
+    //npc
     QHBoxLayout* topLayout = new QHBoxLayout();
     topLayout->setAlignment(Qt::AlignCenter);
 
@@ -444,7 +437,7 @@ void MainWindow::createBattleScene() {
     topLayout->addWidget(npcSpeechLabel);
     mainLayout->addLayout(topLayout);
 
-    // ===== 牌桌区域 =====
+    //桌
     QFrame* tableFrame = new QFrame(battleScene);
     tableFrame->setFixedHeight(180);
     tableFrame->setStyleSheet(
@@ -482,7 +475,7 @@ void MainWindow::createBattleScene() {
 
     mainLayout->addWidget(tableFrame);
 
-    // ===== 玩家区域 =====
+    //player
     QHBoxLayout* bottomLayout = new QHBoxLayout();
     bottomLayout->setAlignment(Qt::AlignBottom);
 
@@ -553,9 +546,9 @@ void MainWindow::createBattleScene() {
     connect(backBtn,         &QPushButton::clicked, this, [this]() { goEndScene(false); });
 }
 
-// ==========================
+
 // 创建 roundResultScene（单局结算）
-// ==========================
+
 void MainWindow::createRoundResultScene() {
     roundResultScene = new QWidget();
     roundResultScene->setStyleSheet("background:#000000;");
@@ -601,9 +594,9 @@ void MainWindow::createRoundResultScene() {
     stack->addWidget(roundResultScene);
 }
 
-// ==========================
+
 // 创建 endScene（最终结局）
-// ==========================
+
 void MainWindow::createEndScene() {
     endScene = new QWidget();
     endScene->setStyleSheet("background:#000000;");
