@@ -23,9 +23,8 @@
 #include <QPixmap>
 #include <QCoreApplication>
 
-// ==========================
 // 卡牌类
-// ==========================
+
 class Card {
 public:
     QString suit;
@@ -64,9 +63,9 @@ public:
     }
 };
 
-// ==========================
-// 玩家数据
-// ==========================
+
+// 玩家类
+
 class PlayerData {
 public:
     QString name;
@@ -91,9 +90,9 @@ public:
     }
 };
 
-// ==========================
-// NPC数据
-// ==========================
+
+// NPC类
+
 class NPCData {
 public:
     QString name;
@@ -117,9 +116,9 @@ public:
     }
 };
 
-// ==========================
+
 // 主窗口
-// ==========================
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
@@ -134,18 +133,18 @@ private:
         BattleEnded
     };
 
-    // ===== 场景 =====
+    //场景
     QStackedWidget* stack = nullptr;
     QWidget* introScene = nullptr;
     QWidget* startScene = nullptr;
-    QWidget* historyScene = nullptr;      // 新增：剧情过场
-    QWidget* ruleScene = nullptr;         // 新增：规则说明
+    QWidget* historyScene = nullptr;      // 前情提要
+    QWidget* ruleScene = nullptr;         // 规则说明
     QWidget* tavernScene = nullptr;
     QWidget* battleScene = nullptr;
     QWidget* roundResultScene = nullptr;  // 单局结算
     QWidget* endScene = nullptr;
 
-    // ===== 游戏数据 =====
+    //游戏数据
     PlayerData player;
     NPCData currentNpc;
     QVector<Card> currentOutCards;
@@ -153,10 +152,10 @@ private:
     bool playerWonLastGame = false;
     TurnState turnState = PlayerTurn;
 
-    // ===== 酒馆大厅 UI =====
+    //酒馆大厅 UI
     QLabel* iouLabel = nullptr;
 
-    // ===== 战斗界面 UI =====
+    //战斗界面 UI
     QLabel* battleTitleLabel = nullptr;
     QLabel* roundInfoLabel = nullptr;
     QLabel* npcAvatarLabel = nullptr;
@@ -171,29 +170,29 @@ private:
     QPushButton* passNpcBtn = nullptr;
     QPushButton* backBtn = nullptr;
 
-    // ===== 单局结算界面 UI =====
+    //单局结算界面 UI
     QLabel* roundResultImageLabel = nullptr;
     QLabel* roundResultTextLabel = nullptr;
 
-    // ===== 结局界面 UI =====
+    //结局界面 UI
     QLabel* endImageLabel = nullptr;
 
-    // ===== 定时器 =====
+    //定时器
     QTimer* battleMessageTimer = nullptr;
 
-    // ===== 牌库方法 =====
+    //牌库方法
     void initCardPool();
     void draw5Cards(PlayerData& p);
     void draw5Cards(NPCData& npc);
 
-    // ===== NPC 资源与台词 =====
+    //NPC 资源与台词
     QString npcSpeak(const QString& name);
     QString getNpcImagePath(const QString& name);
     QString getNpcResultImagePath(const QString& name);
     QString getNpcWinDialogue(const QString& name);
     QString getNpcLoseDialogue(const QString& name);
 
-    // ===== 战斗逻辑 =====
+    //战斗逻辑
     void startBattle(const QString& npcName);
     void doPlayerPlayCard();
     void resolveNpcChallenge();
@@ -203,7 +202,7 @@ private:
     void handleRoundWin(const QString& message);
     void handleRoundLose(const QString& message);
 
-    // ===== UI 更新与场景切换 =====
+    //UI 更新与场景切换
     void goEndScene(bool win);
     void restartToTavern();
     void updateTavernInfo();
@@ -211,7 +210,7 @@ private:
     void updateEndScene();
     void updateActionButtons();
 
-    // ===== 场景创建 =====
+    //场景创建
     void createIntroScene();
     void createStartScene();
     void createHistoryScene();     // 新增
