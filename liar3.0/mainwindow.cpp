@@ -1,8 +1,4 @@
 #include "mainwindow.h"
-
-// ==========================
-// 构造函数
-// ==========================
 MainWindow::MainWindow() {
     resize(1280, 760);
     setMinimumSize(1100, 680);
@@ -30,9 +26,9 @@ MainWindow::MainWindow() {
     stack->setCurrentWidget(introScene);
 }
 
-// ==========================
+
 // 牌库系统
-// ==========================
+
 void MainWindow::initCardPool() {
     cardPool.clear();
     QStringList suits = {"红桃", "黑桃", "方片", "梅花"};
@@ -69,9 +65,9 @@ void MainWindow::draw5Cards(NPCData& npc) {
     }
 }
 
-// ==========================
+
 // NPC 资源与台词
-// ==========================
+
 QString MainWindow::npcSpeak(const QString& name) {
     if (name == "牧场主") return "哼，想从我这里拿走欠条？先赢了我再说吧！";
     if (name == "老警长") return "年轻人，卡牌比枪更能解决问题，出手吧！";
@@ -115,9 +111,9 @@ QString MainWindow::getNpcLoseDialogue(const QString& name) {
     return "看来你还得多练练。";
 }
 
-// ==========================
+
 // 开始战斗
-// ==========================
+
 void MainWindow::startBattle(const QString& npcName) {
     currentNpc = NPCData(npcName);
 
@@ -137,9 +133,9 @@ void MainWindow::startBattle(const QString& npcName) {
     stack->setCurrentWidget(battleScene);
 }
 
-// ==========================
+
 // 胜负处理（跳转全屏结算）
-// ==========================
+
 void MainWindow::handleRoundWin(const QString& message) {
     player.iouCount++;
     playerWonLastGame = true;
@@ -200,9 +196,8 @@ void MainWindow::handleRoundLose(const QString& message) {
     });
 }
 
-// ==========================
 // 玩家出牌
-// ==========================
+
 void MainWindow::doPlayerPlayCard() {
     if (turnState != PlayerTurn) return;
 
@@ -274,9 +269,9 @@ void MainWindow::resolveNpcChallenge() {
     }
 }
 
-// ==========================
+
 // NPC 出牌
-// ==========================
+
 void MainWindow::doNpcPlayCard() {
     if (turnState != NpcTurn) return;
 
@@ -347,9 +342,9 @@ void MainWindow::doPlayerPass() {
     updateActionButtons();
     updateBattleUI();
 }
-// ==========================
+
 // 场景切换与 UI 更新
-// ==========================
+
 void MainWindow::goEndScene(bool win) {
     playerWonLastGame = win;
     updateEndScene();
@@ -499,10 +494,7 @@ void MainWindow::updateEndScene() {
             );
     }
 }
-
-// ==========================
-// 创建 introScene（开场大图）
-// ==========================
+//开场
 void MainWindow::createIntroScene() {
     introScene = new QWidget();
     introScene->setStyleSheet("background:#0a0a0a;");
@@ -560,9 +552,9 @@ void MainWindow::createIntroScene() {
     });
 }
 
-// ==========================
-// 创建 startScene（标题界面）
-// ==========================
+
+// 创建标题
+
 void MainWindow::createStartScene() {
     startScene = new QWidget();
     startScene->setStyleSheet(
@@ -703,9 +695,9 @@ void MainWindow::createHistoryScene() {
     });
 }
 
-// ==========================
-// 创建 ruleScene（规则说明）
-// ==========================
+
+// 创建规则页
+
 void MainWindow::createRuleScene() {
     ruleScene = new QWidget();
     ruleScene->setStyleSheet("background:#000000;");
@@ -763,9 +755,7 @@ void MainWindow::createRuleScene() {
         stack->setCurrentWidget(tavernScene);
     });
 }
-// ==========================
-// 创建 tavernScene（酒馆大厅）
-// ==========================
+//大厅
 void MainWindow::createTavernScene() {
     tavernScene = new QWidget();
     tavernScene->setStyleSheet("background:#000000;");
@@ -842,7 +832,7 @@ void MainWindow::createTavernScene() {
     overlayLayout->addLayout(topLayout);
     overlayLayout->addStretch();
 
-    // ===== 左下角 NPC 挑战按钮 =====
+    // 左下角 NPC 挑战按钮
     QHBoxLayout* middleLayout = new QHBoxLayout();
 
     QVBoxLayout* npcBtnLayout = new QVBoxLayout();
@@ -913,9 +903,9 @@ void MainWindow::createTavernScene() {
     updateTavernInfo();
 }
 
-// ==========================
+
 // 创建 battleScene（战斗界面）
-// ==========================
+
 void MainWindow::createBattleScene() {
     battleScene = new QWidget();
     battleScene->setStyleSheet("background:#1c120d;");
@@ -961,7 +951,7 @@ void MainWindow::createBattleScene() {
     topLayout->addWidget(npcSpeechLabel);
     mainLayout->addLayout(topLayout);
 
-    // ===== 牌桌区域 =====
+    //牌桌区域
     QFrame* tableFrame = new QFrame(battleScene);
     tableFrame->setFixedHeight(180);
     tableFrame->setStyleSheet(
@@ -999,7 +989,7 @@ void MainWindow::createBattleScene() {
 
     mainLayout->addWidget(tableFrame);
 
-    // ===== 玩家区域 =====
+    //玩家区域
     QHBoxLayout* bottomLayout = new QHBoxLayout();
     bottomLayout->setAlignment(Qt::AlignBottom);
 
@@ -1070,9 +1060,8 @@ void MainWindow::createBattleScene() {
     connect(backBtn,         &QPushButton::clicked, this, [this]() { goEndScene(false); });
 }
 
-// ==========================
+
 // 创建 roundResultScene（单局结算）
-// ==========================
 void MainWindow::createRoundResultScene() {
     roundResultScene = new QWidget();
     roundResultScene->setStyleSheet("background:#000000;");
@@ -1117,10 +1106,7 @@ void MainWindow::createRoundResultScene() {
     layout->addWidget(dialogFrame, 0);
     stack->addWidget(roundResultScene);
 }
-
-// ==========================
-// 创建 endScene（最终结局）
-// ==========================
+//结局
 void MainWindow::createEndScene() {
     endScene = new QWidget();
     endScene->setStyleSheet("background:#000000;");
